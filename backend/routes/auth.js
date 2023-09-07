@@ -3,7 +3,9 @@ const router = express.Router();
 
 //post phone number
 router.post("/phone", (req, res) => {
+
   res.send("Phone number");
+
 });
 
 
