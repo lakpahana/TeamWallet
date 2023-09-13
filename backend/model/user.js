@@ -1,14 +1,31 @@
-//USER MODEL
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const userSchema = new Schema({
-    name: String,
-    username: String,
-    phoneNumber: String,
-    date: {
-        type: Date,
-        default: Date.now
-    }
-});
+var mongoose = require('mongoose')
 
-module.exports = mongoose.model('User', userSchema);
+mongoose.connect(process.env.MONGODB_URI,
+).then(() => {
+
+    console.log("DB Connected")
+}).catch(err => {
+
+    console.log(err)
+})
+
+const User = new mongoose.Schema({
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+    },
+    emailId: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
+})
+
+module.exports.User = mongoose.model('user', User)
