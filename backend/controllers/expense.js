@@ -44,3 +44,28 @@ exports.update = (req, res) => {
         res.json(data);
     });
 }
+
+exports.remove = (req, res) => {
+    const expense = req.expense;
+    expense.remove((err, data) => {
+        if (err) {
+        return res.status(400).json({
+            error: errorHandler(err),
+        });
+        }
+        res.json({
+        message: "Expense deleted successfully",
+        });
+    });
+}
+
+exports.list = (req, res) => {
+    Expense.find().exec((err, data) => {
+        if (err) {
+        return res.status(400).json({
+            error: errorHandler(err),
+        });
+        }
+        res.json(data);
+    });
+}
