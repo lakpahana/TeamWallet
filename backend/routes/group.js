@@ -37,7 +37,3 @@ router.post('/', (req, res) => {
         .catch(err => res.status(400).json({ error: 'Unable to add this group' }));
 });
 
-// @route GET api/group/:id
-// @description Update group
-// @access Public
-
